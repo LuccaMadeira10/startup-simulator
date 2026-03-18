@@ -1,5 +1,14 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 class StartupCreate(BaseModel):
+    name: str = Field(..., min_length=2, max_length=100)
+    industry: str = Field(..., min_length=2, max_length=50)
+    initial_capital: float = Field(..., gt=0)
+
+
+class StartupResponse(BaseModel):
+    id: int
     name: str
-    capital: float
+    industry: str
+    initial_capital: float
